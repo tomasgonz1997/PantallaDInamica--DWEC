@@ -44,6 +44,7 @@
 // Listar elementos disponibles 
 //Array con nombres
 var listaImagenes = ["imagen1.jpg", "imagen2.jpg", "imagen3.jpg", "imagen4.jpg"];
+var listaVideos = ["video1.mp4", "video2.mp4", "video3.mp4"];
 const contenedorDatos = document.querySelector("#contenedorDatos");
 //Funcion DOM cargar elementos
 function listarImagenes (arrayImagenes){
@@ -58,7 +59,33 @@ function listarImagenes (arrayImagenes){
         contenedorDatos.appendChild(caja);
   }
 }
+//Listar videos
+ function listarVideos (arrayVideos){
+     let indice = 1;
+     for(let elemento of arrayVideos){
+         let caja = document.createElement("div");
+         caja.setAttribute("id", `vid-${indice}`);
+         caja.classList.add("dato");
+         caja.setAttribute("draggable",true);
+         //VIdeo COntrol
+         let videoCtrl = document.createElement("video");
+         videoCtrl.setAttribute("height","100%");
+         videoCtrl.setAttribute("width","100%");
+         videoCtrl.setAttribute("controls","");
+         indice++;
+         //Video
+         let video = document.createElement("source");
+         video.setAttribute("type", "video/mp4");
+         video.setAttribute("src", "../media/video/" + elemento);
+         //Anadir
+         videoCtrl.append(video);
+         caja.append(videoCtrl);
+         contenedorDatos.appendChild(caja);
+
+   }
+ }
  
 //Llmaadas 
 listarImagenes(listaImagenes);
+listarVideos(listaVideos);
 })
