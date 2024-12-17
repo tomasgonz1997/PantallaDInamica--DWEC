@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="./js/script.js"></script>
+    <style>
+        .pantalla {
+            height: 300px;
+            width: 100%;
+            border: 2px solid black;
+        }
+
+        .dato {
+            height: 150px;
+            width: 150px;
+            border: 2px solid black;
+        }
+
+        #contenedor {
+            display: flex;
+            flex-direction: row;
+            column-gap: 5px;
+        }
+
+        #contenedorDatos{
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: row;
+            column-gap: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Pantalla Dinamica de TV</h1>
+    <form>
+        <label for="numPantllas">Dividir las pantallas en:</label>
+        <input type="number" id="numPantallas">
+        <button type="submit" id="enviar">Aplica</button>
+    </form>
+
+    <div id="contenedor">
+    </div>
+
+    <h2>Elementos Disponibles</h2>
+    <div id="contenedorDatos"></div>
+</body>
+
+</html>
