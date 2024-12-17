@@ -28,7 +28,7 @@ window.addEventListener("load", function () {
             div.classList.add(claseDato)
             contenedorDatos.appendChild(div)
             div.setAttribute("draggable",true)
-            div.innerHTML="<p>Esto es un texto de prueba </p>"
+            div.innerHTML="<p>Esto es un texto de prueba "+i+" </p>"
         }
     }
 
@@ -36,6 +36,7 @@ window.addEventListener("load", function () {
         contenedor.innerHTML = ""
         for (let i = 0; i < numPantallas; i++) {
             let div = document.createElement("div")
+            div.setAttribute("id",i)
             div.classList.add(clasePantallas)
             contenedor.appendChild(div)
         }
@@ -45,6 +46,7 @@ window.addEventListener("load", function () {
 //dragstart
 document.addEventListener("dragstart", function( event ) {
     dragged = event.target;
+    event.dataTransfer.setData("text",event.target.parentNode.id);
     event.target.style.opacity = .5;
     //console.log("Has comenzado a arrastrar un objeto. [Evento: dragstart]");
 });
@@ -68,7 +70,7 @@ document.addEventListener("dragover", function( event ) {
 
 //dragenter
 document.addEventListener("dragenter", function( event ) {
-    if ( event.target.className == "pantalla" ) {
+    if ( event.target.className == "pantalla" ||event.target.className=="contenedor" ) {
         event.target.style.background = "gray";
     }
     //console.log("Has arrastrado e ingresado sobre un destino valido. [Evento: dragenter]");
@@ -76,7 +78,7 @@ document.addEventListener("dragenter", function( event ) {
 
 //dragleave
 document.addEventListener("dragleave", function( event ) {
-    if ( event.target.className == "pantalla" ) {
+    if ( event.target.className == "pantalla" ||event.target.className=="contenedor" ) {
         event.target.style.background = "";
     }
     //console.log("Has dejado de arrastrar sobre un destino valido. [Evento: dragleave]");
@@ -85,10 +87,25 @@ document.addEventListener("dragleave", function( event ) {
 //drop
 document.addEventListener("drop", function( event ) {
     event.preventDefault();
-    if ( event.target.className == "pantalla" ) {
+    if ( event.target.className == "pantalla" || event.target.className=="contenedor") {
         event.target.style.background = "";
         dragged.parentNode.removeChild( dragged );
-        event.target.appendChild( dragged );
+        let id=event.dataTransfer.getData("text");
+        if(event.target.childElementCount!=0){
+            let hijo=event.target.firstChild;
+            event.target.appendChild( dragged );
+            if(event.target.className=="pantalla"){
+                let contenedor=document.getElementById(id);
+                
+                contenedor.appendChild(hijo);
+            }else{
+                contenedorDatos.append(hijo);
+            }
+            
+        }else{
+            event.target.appendChild( dragged );
+        }
+        
     }       
 });
 })
