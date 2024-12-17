@@ -89,6 +89,13 @@ document.addEventListener("drop", function( event ) {
         event.target.style.background = "";
         dragged.parentNode.removeChild( dragged );
         event.target.appendChild( dragged );
+        //if(/^img/.exec(dragged.id)){
+            //console.log(dragged.id);  
+            dragged.style.width = "100%";
+            dragged.style.height = "100%";
+            //dragged.style.position = "absolute";
+       // }
+       
     }       
 });
 })

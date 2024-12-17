@@ -6,17 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script defer src="./js/script.js"></script>
+    <script defer src="./js/pantalla.js"></script>
     <style>
         .pantalla {
             height: 300px;
             width: 100%;
             border: 2px solid black;
+            /* Tamano */
+            display: flex;
+            
         }
 
         .dato {
             height: 150px;
             width: 150px;
             border: 2px solid black;
+            /* Estilos img ocupa todo 
+            width:100%;
+            height:100%;
+            position:absolute;
+            top:0;
+            bottom:0;
+            */
         }
 
         #contenedor {
@@ -25,7 +36,7 @@
             column-gap: 5px;
         }
 
-        #contenedorDatos{
+        #contenedorDatos {
             align-items: center;
             justify-content: center;
             display: flex;
@@ -47,7 +58,9 @@
     </div>
 
     <h2>Elementos Disponibles</h2>
+
     <div id="contenedorDatos"></div>
+
 </body>
 
 </html>
