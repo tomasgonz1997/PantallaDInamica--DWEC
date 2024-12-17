@@ -90,22 +90,28 @@ document.addEventListener("drop", function( event ) {
     if ( event.target.className == "pantalla" || event.target.className=="contenedor") {
         event.target.style.background = "";
         dragged.parentNode.removeChild( dragged );
+        dragged.style.width="80%";
+        dragged.style.height="100%";
         let id=event.dataTransfer.getData("text");
         if(event.target.childElementCount!=0){
             let hijo=event.target.firstChild;
             event.target.appendChild( dragged );
             if(event.target.className=="pantalla"){
                 let contenedor=document.getElementById(id);
-                
                 contenedor.appendChild(hijo);
+                hijo.style.width="";
+                hijo.style.height="";
             }else{
+                dragged.style.width="";
+                dragged.style.height="";
+                hijo.style.width="";
+                hijo.style.height="";
                 contenedorDatos.append(hijo);
             }
             
         }else{
             event.target.appendChild( dragged );
         }
-        
     }       
 });
 })
